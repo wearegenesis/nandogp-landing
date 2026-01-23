@@ -29,7 +29,7 @@ const TopBar: React.FC = () => {
   return (
     <header
       className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
-        isScrolled
+        isScrolled || mobileMenuOpen
           ? "bg-light/95 backdrop-blur-md shadow-sm py-3"
           : "bg-transparent py-5"
       }`}
@@ -37,22 +37,19 @@ const TopBar: React.FC = () => {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between items-center">
           {/* Logo */}
-          <div className="flex-shrink-0">
+          <div className="flex-shrink-0 z-50">
             <a
               href="#"
               className="flex items-center gap-2"
               onClick={(e) => handleNavClick(e, "#home")}
             >
-              <span
-                className={`font-bold text-xl tracking-tight transition-colors ${isScrolled ? "text-dark" : "text-dark"}`}
-              >
+              <span className="font-bold text-xl tracking-tight text-dark">
                 NANDO-GP
               </span>
             </a>
           </div>
 
-          {/* Desktop Nav */}
-          {/* MODIFICACIÓN: landscape:max-lg:hidden fuerza a ocultar los enlaces en móviles grandes rotados */}
+          {/* Desktop Nav - Oculto en móviles grandes rotados */}
           <nav className="hidden md:flex landscape:max-lg:hidden space-x-8">
             {NAV_LINKS.map((link) => (
               <a
@@ -67,9 +64,8 @@ const TopBar: React.FC = () => {
             ))}
           </nav>
 
-          {/* Mobile Menu Button */}
-          {/* MODIFICACIÓN: landscape:max-lg:block fuerza a mostrar la hamburguesa en móviles grandes rotados */}
-          <div className="md:hidden landscape:max-lg:block">
+          {/* Mobile Menu Button - Visible en móviles y landscape hasta LG */}
+          <div className="md:hidden landscape:max-lg:block z-50">
             <button
               onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
               className="text-dark hover:text-primary focus:outline-none p-2"
@@ -81,20 +77,21 @@ const TopBar: React.FC = () => {
         </div>
       </div>
 
-      {/* Mobile Menu Overlay */}
-      {/* MODIFICACIÓN: landscape:max-lg:block permite que el menú se renderice en esa vista */}
+      {/* Mobile Menu Overlay - PANTALLA COMPLETA */}
       {mobileMenuOpen && (
-        <div className="md:hidden landscape:max-lg:block absolute top-full left-0 w-full bg-light border-t border-secondary/20 shadow-lg py-4 px-4 flex flex-col space-y-4">
-          {NAV_LINKS.map((link) => (
-            <a
-              key={link.name}
-              href={link.href}
-              onClick={(e) => handleNavClick(e, link.href)}
-              className="text-dark hover:text-primary font-medium text-lg block border-b border-secondary/10 pb-2"
-            >
-              {link.name}
-            </a>
-          ))}
+        <div className="md:hidden landscape:max-lg:flex fixed inset-0 z-40 bg-light flex flex-col items-center justify-center h-screen w-screen overflow-y-auto">
+          <div className="flex flex-col space-y-8 text-center p-4">
+            {NAV_LINKS.map((link) => (
+              <a
+                key={link.name}
+                href={link.href}
+                onClick={(e) => handleNavClick(e, link.href)}
+                className="text-dark hover:text-primary font-bold text-2xl tracking-wide transition-colors"
+              >
+                {link.name}
+              </a>
+            ))}
+          </div>
         </div>
       )}
     </header>
