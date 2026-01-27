@@ -2,7 +2,7 @@ import React, { useEffect, useRef, useState } from 'react';
 import { SERVICES } from '../constants';
 
 const ServicesGrid: React.FC = () => {
-  // 1. Estado para guardar los IDs de las tarjetas que ya han sido vistas
+  // 1. Estado para guardar los IDs de las tarjetas que ya han sido vistass
   const [visibleItems, setVisibleItems] = useState<Set<number>>(new Set());
   
   // 2. Referencia para almacenar los elementos del DOM
