@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
-import "../truck-cards.css";
 import DrivingScene from "./DrivingScene";
+import "../styles/truck-cards.css";
 
 const PresentationSection: React.FC = () => {
   const [speed, setSpeed] = useState(62);

@@ -1,0 +1,31 @@
+@import "tailwindcss";
+
+@theme {
+  /* Colores */
+  --color-primary: #8B5E3C;
+  --color-dark: #1F2937;
+  --color-light: #EFE8DE;
+  --color-secondary: #A69F91;
+  --color-accent: #D1A064;
+
+  /* Fuentes */
+  --font-sans: "Inter", sans-serif;
+  --font-display: "Racing Sans One", sans-serif;
+}
+
+/* Estilos globales */
+body {
+  background-color: var(--color-light);
+  color: var(--color-dark);
+}
+
+.chat-scroll::-webkit-scrollbar {
+  width: 6px;
+}
+.chat-scroll::-webkit-scrollbar-track {
+  background: #f1f1f1;
+}
+.chat-scroll::-webkit-scrollbar-thumb {
+  background: var(--color-secondary);
+  border-radius: 3px;
+}

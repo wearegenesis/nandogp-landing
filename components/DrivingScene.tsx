@@ -1,6 +1,5 @@
 import React from "react";
 // Eliminada importación de HERO_VIDEO_URL que no se usaba aquí
-import "../truck-cards.css";
 
 type DrivingSceneProps = {
   speed: number;
